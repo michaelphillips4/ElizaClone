@@ -1,0 +1,10 @@
+{
+"article":["the", "this","my","some","his","her","their"],
+"verb":["ran", "jumped", "walked", "sprinted", "skipped","flew","danced","sung","wallowed"],
+"adjective":["angry","arrogant","attractive","brave","bewildered","creepy", "yellow", "fast", "faithful", "fit","dead"],
+"preposition":["after", "before", "on", "under", "inside" , "to", "from", "across", "outside"],
+"common_noun":[ "boy", "country", "bridge", "city", "birth", "day", "car", "boat", "rocket","monster","tree","ghost"],
+"proper_noun":["Fred", "Sid", "Wendy","Bob","Steven","Africa","Monday","Friday"],
+"concrete_noun":["elephant","owl","otter","pussy cat", "cat", "moose", "rabbit","weasel","shrew","dog","train", "bus","tank","submarine", "building", "coffee", "tree", "rain", "beach", "tune","sky"]
+}
+
