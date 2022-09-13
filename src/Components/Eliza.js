@@ -1,9 +1,9 @@
 import data from "../Data/data.json";
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 
 function Eliza() {
 
-  const [chatter, setChatter] = useState([{ name: "Therapist", text: "Hello how can I help you today." }]);
+  const [chatter, setChatter] = useState([{ name: "Eliza", text: "Hello how can I help you today." }]);
   const [input, setInput] = useState("");
 
 
@@ -75,14 +75,16 @@ function Eliza() {
   // Function to pad a string.. head, tail & punctuation
 
   const punct = [".", ",", "!", "?", ":", ";", "&", '"', "@", "#", "(", ")"];
-  let aString
+
   function padString(strng) {
-    aString = " " + strng + " ";
+    let aString = " " + strng + " ";
     for (let i = 0; i < punct.length; i++) {
       aString = replaceStr(aString, punct[i], " " + punct[i] + " ", 0);
     }
     return aString;
   }
+
+
 
   // Function to strip padding
 
@@ -106,6 +108,7 @@ function Eliza() {
   var ht = 0; // head tail stearing
 
   function strTrim(strng) {
+    let aString;
     let loc;
     if (ht === 0) {
       loc = 0;
@@ -227,18 +230,18 @@ function Eliza() {
   var sTopic = ""; // Last worthy responce
 
   var wPrevious = ""; // so we can check for repeats
- 
+
 
 
   function listen(User) {
     let sInput = User;
-    
- 
-    //clearTimeout(Rtimer);
-   //  setTimeout(wakeup, 30000); // wake up call
 
-   
-    sInput = strTrim(sInput); // dress input formating
+
+    //clearTimeout(Rtimer);
+    //  setTimeout(wakeup, 30000); // wake up call
+
+    sInput = sInput.trim(); // dress input formating
+    //sInput = strTrim(sInput); // dress input formating
     if (sInput !== "") {
       var wInput = padString(sInput.toUpperCase()); // Work copy
       var foundkey = maxKey; // assume it's a repeat input
@@ -247,27 +250,27 @@ function Eliza() {
         foundkey = findkey(wInput); // look for a keyword.
       }
       if (foundkey === keyNotFound) {
-        
-          wPrevious = wInput; // save input to check repeats
-          if (sInput.length < 10 && wTopic !== "" && wTopic !== wPrevious) {
-            let lTopic = conjugate(sTopic);
-            sTopic = "";
-            wTopic = "";
-            return 'OK... "' + lTopic + '". Tell me more.';
+
+        wPrevious = wInput; // save input to check repeats
+        if (sInput.length < 10 && wTopic !== "" && wTopic !== wPrevious) {
+          let lTopic = conjugate(sTopic);
+          sTopic = "";
+          wTopic = "";
+          return 'OK... "' + lTopic + '". Tell me more.';
+        } else {
+          if (sInput.length < 15) {
+            return "Tell me more...";
           } else {
-            if (sInput.length < 15) {
-              return "Tell me more...";
-            } else {
-              return phrase(sInput, foundkey);
-            }
+            return phrase(sInput, foundkey);
           }
-  
+        }
+
       } else {
         if (sInput.length > 12) {
           sTopic = sInput;
           wTopic = wInput;
         }
-   
+
         wPrevious = wInput; // save input to check repeats
         return phrase(sInput, foundkey); // Get our response
       }
@@ -275,11 +278,11 @@ function Eliza() {
       return "I can't help, if you will not chat with me!";
     }
   }
- /*  function wakeup() {
-    var strng1 = "    *** Are We going to Chat? ***";
-    var strng2 = "  I can't help you without a dialog!";
-    update(strng1, strng2);
-  } */
+  /*  function wakeup() {
+     var strng1 = "    *** Are We going to Chat? ***";
+     var strng2 = "  I can't help you without a dialog!";
+     update(strng1, strng2);
+   } */
 
   // build our data base here
 
@@ -381,61 +384,49 @@ function Eliza() {
   keyword[37] = new key("HELLO", 117, 118);
   keyword[37] = new key("OKAY", 83, 119);
 
-/* 
-  const update = (name, text) => {
-    const clone = chatter;
-    clone.push({ name: name, text: text });
-    setChatter(clone);
-    console.log(chatter, Array.prototype.reverse.call(chatter));
-  };
 
-
-
-  useEffect(() => {
-    setTimeout(() => {
-      const clone = chatter;
-      let v = listen(clone[clone.length-1].text);
-      clone.push({ name: "Therapist", text:v});
-      setChatter(clone);
-    }, 1000);
-  },  [chatter]); */
-
-
-  function revers(){
-  let temp = [];
-    for (let i = chatter.length ; i > 0; i--) {
-    // recompose
-    temp.push({ name: chatter[i-1].name, text: chatter[i-1].text });
-   
-  }
-  return temp
-  }
 
   return <div>
     <main>
-      <p>
-        <input type="text"
-          size="65"
-          value={input}
-          onChange={(e) => setInput(e.target.value)} />
+      <article>
+        <p>
 
-        <button onClick={() => {
-           let res = input
-           setInput(""); 
-           const clone = chatter;
-           clone.push({ name: "Patient", text: res });
-           clone.push({ name: "Therapist", text: listen(res) });
-           setChatter(clone);
-           }} >Talk to Eliza</button>
-    </p>
+          <span className="animate-flicker"><b>Eliza</b> - {chatter[0].text}</span>
+        </p>
+        <p>
 
-    <ul id="conversation">{
-       revers().map((s, index) => <li key={index}><b>{s.name}</b> -- {s.text} </li>)
-    }</ul>
-  </main>
-        
-           
-    </div >
+          <input type="text"
+            size="65"
+            value={input}
+            onChange={(e) => setInput(e.target.value)} />
+
+          <button onClick={() => {
+            let res = input
+            setInput("");
+            const clone = [];
+            clone.push({ name: "Eliza", text: listen(res) });
+            clone.push({ name: "You", text: res });
+            const temp = [...clone, ...chatter];
+            setChatter(temp);
+            localStorage.setItem("chatter", JSON.stringify(temp));
+          }} >Send</button>
+        </p>
+      </article>
+      <br />
+      <article >
+        <details>
+          <summary>Conversation</summary>
+          <ul id="conversation" >
+            {
+              chatter.slice(1, chatter.length).map((s, index) => <li className="animate-flicker" key={index}><b>{s.name}</b> -- {s.text} </li>)
+            }
+          </ul>
+        </details>
+      </article>
+    </main>
+
+
+  </div >
 
 
 }
