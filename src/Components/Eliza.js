@@ -10,24 +10,16 @@ function Eliza() {
   const response = data.response;
   let maxKey = 36;
   let keyNotFound = maxKey - 1;
-  let keyword = new Array(maxKey);
+  let keyword = data.keyword;
 
-  function key(key, idx, end) {
+/*   function key(key, idx, end) {
     this.key = key; // phrase to match
     this.idx = idx; // first response to use
     this.end = end; // last response to use
     this.last = end; // response used last time
-  }
+  } */
 
-
-
-  let maxConj = 19;
-  let max2ndConj = 7;
-  var conj1 = new Array(maxConj);
-  var conj2 = new Array(maxConj);
-  var conj3 = new Array(max2ndConj);
-  var conj4 = new Array(max2ndConj);
-
+  
   // Funtion to replaces all occurances of substring substr1 with substr2 within strng
   // if type == 0 straight string replacement
   // if type == 1 assumes padded strings and replaces whole words only
@@ -147,22 +139,22 @@ function Eliza() {
   function conjugate(sStrg) {
     // rephrases sString
     var sString = sStrg;
-    for (var i = 0; i < maxConj; i++) {
+    for (var i = 0; i < data.conj1.length; i++) {
       // decompose
-      sString = replaceStr(sString, conj1[i], "#@&" + i, 2);
+      sString = replaceStr(sString, data.conj1[i], "#@&" + i, 2);
     }
-    for (i = 0; i < maxConj; i++) {
+    for (i = 0; i < data.conj2.length; i++) {
       // recompose
-      sString = replaceStr(sString, "#@&" + i, conj2[i], 2);
+      sString = replaceStr(sString, "#@&" + i, data.conj2[i], 2);
     }
     // post process the resulting string
-    for (i = 0; i < max2ndConj; i++) {
+    for (i = 0; i < data.conj3length; i++) {
       // decompose
-      sString = replaceStr(sString, conj3[i], "#@&" + i, 2);
+      sString = replaceStr(sString, data.conj3[i], "#@&" + i, 2);
     }
-    for (i = 0; i < max2ndConj; i++) {
+    for (i = 0; i < data.conj4.length; i++) {
       // recompose
-      sString = replaceStr(sString, "#@&" + i, conj4[i], 2);
+      sString = replaceStr(sString, "#@&" + i, data.conj4[i], 2);
     }
     return sString;
   }
@@ -284,67 +276,12 @@ function Eliza() {
      update(strng1, strng2);
    } */
 
-  // build our data base here
-
-  conj1[0] = "are";
-  conj2[0] = "am";
-  conj1[1] = "am";
-  conj2[1] = "are";
-  conj1[2] = "were";
-  conj2[2] = "was";
-  conj1[3] = "was";
-  conj2[3] = "were";
-  conj1[4] = "I";
-  conj2[4] = "you";
-  conj1[5] = "me";
-  conj2[5] = "you";
-  conj1[6] = "you";
-  conj2[6] = "me";
-  conj1[7] = "my";
-  conj2[7] = "your";
-  conj1[8] = "your";
-  conj2[8] = "my";
-  conj1[9] = "mine";
-  conj2[9] = "your's";
-  conj1[10] = "your's";
-  conj2[10] = "mine";
-  conj1[11] = "I'm";
-  conj2[11] = "you're";
-  conj1[12] = "you're";
-  conj2[12] = "I'm";
-  conj1[13] = "I've";
-  conj2[13] = "you've";
-  conj1[14] = "you've";
-  conj2[14] = "I've";
-  conj1[15] = "I'll";
-  conj2[15] = "you'll";
-  conj1[16] = "you'll";
-  conj2[16] = "I'll";
-  conj1[17] = "myself";
-  conj2[17] = "yourself";
-  conj1[18] = "yourself";
-  conj2[18] = "myself";
-
+  
   // array to post process correct our tenses of pronouns such as "I/me"
-
-  conj3[0] = "me am";
-  conj4[0] = "I am";
-  conj3[1] = "am me";
-  conj4[1] = "am I";
-  conj3[2] = "me can";
-  conj4[2] = "I can";
-  conj3[3] = "can me";
-  conj4[3] = "can I";
-  conj3[4] = "me have";
-  conj4[4] = "I have";
-  conj3[5] = "me will";
-  conj4[5] = "I will";
-  conj3[6] = "will me";
-  conj4[6] = "will I";
 
   // Keywords
 
-  keyword[0] = new key("CAN YOU", 1, 3);
+  /* keyword[0] = new key("CAN YOU", 1, 3);
   keyword[1] = new key("CAN I", 4, 5);
   keyword[2] = new key("YOU ARE", 6, 9);
   keyword[3] = new key("YOU'RE", 6, 9);
@@ -383,7 +320,7 @@ function Eliza() {
   keyword[36] = new key("REPEAT INPUT", 113, 116);
   keyword[37] = new key("HELLO", 117, 118);
   keyword[37] = new key("OKAY", 83, 119);
-
+ */
 
 
   return <div>
