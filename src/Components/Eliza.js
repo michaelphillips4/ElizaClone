@@ -69,6 +69,7 @@ function Eliza() {
     }
     aString = RPstrg + aString;
     RPstrg = "";
+    console.log(arguments.callee.name,arguments,`result = ${aString}` );
     return aString;
   }
 
@@ -81,6 +82,7 @@ function Eliza() {
     for (let i = 0; i < punct.length; i++) {
       aString = replaceStr(aString, punct[i], " " + punct[i] + " ", 0);
     }
+    console.log(arguments.callee.name,arguments,`result = ${aString}` );
     return aString;
   }
 
@@ -100,6 +102,7 @@ function Eliza() {
     for (let i = 0; i < punct.length; i++) {
       aString = replaceStr(aString, " " + punct[i], punct[i], 0);
     }
+    console.log(arguments.callee.name,arguments,`result = ${aString}` );
     return aString;
   }
 
@@ -139,6 +142,7 @@ function Eliza() {
     } else {
       ht = 0;
     }
+    console.log(arguments.callee.name,arguments,`result = ${aString}` );
     return aString;
   }
 
@@ -164,6 +168,7 @@ function Eliza() {
       // recompose
       sString = replaceStr(sString, "#@&" + i, conj4[i], 2);
     }
+    console.log(arguments.callee.name,arguments,`result = ${sString}` );
     return sString;
   }
 
@@ -199,6 +204,7 @@ function Eliza() {
         sTemp = replaceStr(rTemp, "<@", " " + thisstr + ".", 0);
       }
     } else sTemp = rTemp;
+    console.log(arguments.callee.name,arguments,`result = ${sTemp}` );
     return sTemp;
   }
 
