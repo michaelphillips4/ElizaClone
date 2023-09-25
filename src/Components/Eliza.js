@@ -69,6 +69,7 @@ function Eliza() {
     }
     aString = RPstrg + aString;
     RPstrg = "";
+    console.log(replaceStr.name,` r = ${aString}`)
     return aString;
   }
 
@@ -81,6 +82,7 @@ function Eliza() {
     for (let i = 0; i < punct.length; i++) {
       aString = replaceStr(aString, punct[i], " " + punct[i] + " ", 0);
     }
+    console.log(padString.name,` r = ${aString}`)
     return aString;
   }
 
@@ -100,6 +102,7 @@ function Eliza() {
     for (let i = 0; i < punct.length; i++) {
       aString = replaceStr(aString, " " + punct[i], punct[i], 0);
     }
+    console.log(unpadString.name,` r = ${aString}`)
     return aString;
   }
 
@@ -139,6 +142,7 @@ function Eliza() {
     } else {
       ht = 0;
     }
+    console.log(strTrim.name,` r = ${aString}`)
     return aString;
   }
 
@@ -164,6 +168,9 @@ function Eliza() {
       // recompose
       sString = replaceStr(sString, "#@&" + i, conj4[i], 2);
     }
+    
+    console.log(conjugate.name,sStrg,` r = ${sString}`)
+
     return sString;
   }
 
@@ -199,6 +206,7 @@ function Eliza() {
         sTemp = replaceStr(rTemp, "<@", " " + thisstr + ".", 0);
       }
     } else sTemp = rTemp;
+    console.log(phrase.name,sString, keyword[keyidx],choice,rTemp,thisstr,` r = ${sTemp}`)
     return sTemp;
   }
 
@@ -241,7 +249,7 @@ function Eliza() {
     //  setTimeout(wakeup, 30000); // wake up call
 
     sInput = sInput.trim(); // dress input formating
-    //sInput = strTrim(sInput); // dress input formating
+    sInput = strTrim(sInput); // dress input formating
     if (sInput !== "") {
       var wInput = padString(sInput.toUpperCase()); // Work copy
       var foundkey = maxKey; // assume it's a repeat input
