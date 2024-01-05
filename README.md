@@ -2,7 +2,7 @@
 
 This is a simple adaptation of the original in React and Type script.
 
-> ELIZA is an early natural language processing computer program created from 1964 to 1967[1] at MIT by Joseph Weizenbaum. Created to explore communication between humans and machines, ELIZA simulated conversation by using a pattern matching and substitution methodology that gave users an illusion of understanding on the part of the program, but had no representation that could be considered really understanding what was being said by either party.
+> ELIZA is an early natural language processing computer program created from 1964 to 1967 at MIT by Joseph Weizenbaum. Created to explore communication between humans and machines, ELIZA simulated conversation by using a pattern matching and substitution methodology that gave users an illusion of understanding on the part of the program, but had no representation that could be considered really understanding what was being said by either party.
 
 see : https://en.wikipedia.org/wiki/ELIZA
 
