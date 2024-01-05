@@ -1,11 +1,12 @@
-import React from 'react';
-import Eliza from './Components/ElizaView.tsx'; 
+import ElizaView from "./ElizaView"
 
 
 function App() {
+
+
   return (
-   <Eliza />
-  );
+   <ElizaView />
+  )
 }
 
-export default App;
+export default App

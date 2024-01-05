@@ -1,10 +1,6 @@
-import {getElizaResponseToInput} from "../ElizaMachine.ts"
-import React, { useState } from 'react';
-
-type Chatter = {
-  name: string
-  text: string
-}
+import {getElizaResponseToInput} from "./ElizaMachine.ts"
+import { useState } from 'react';
+import {Chatter} from  "./Definitions.ts"
 
 const initialChatter = [{ name: "Eliza", text: "Hello how can I help you today." } as Chatter];
 

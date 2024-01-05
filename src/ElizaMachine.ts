@@ -1,4 +1,4 @@
-import data from "./Data/data.json";
+import data from "./data.json";
 
 const elizaResponses = data.response;
 const keywords = data.keywords;
