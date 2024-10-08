@@ -1,48 +1,55 @@
-import {getElizaResponseToInput} from "./ElizaMachine.ts"
-import { useState } from 'react';
-import {Chatter} from  "./Definitions.ts"
+import { getElizaResponseToInput } from "./ElizaMachine.ts";
+import { useState } from "react";
+import { Chatter } from "./Definitions.ts";
 
-const initialChatter = [{ name: "Eliza", text: "Hello how can I help you today." } as Chatter];
+const initialChatter = [
+  { name: "Eliza", text: "Hello how can I help you today." } as Chatter,
+];
 
 export default function Eliza() {
   const [chatter, setChatter] = useState(initialChatter);
   const [input, setInput] = useState("");
-  
-  return <div>
-    <main>
-      <article>
-        <p>
 
-          <span><b>Eliza</b> - {chatter[0].text}</span>
-        </p>
-        <p>
+  return (
+    <div>
+      <main>
+        <article>
+          <p>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+            />
 
-          <input type="text"
-                 value={input}
-                 onChange={(e) => setInput(e.target.value)} />
+            <button
+              onClick={() => {
+                setInput("");
+                const clone = [
+                  {
+                    name: "Eliza",
+                    text: getElizaResponseToInput(input),
+                  } as Chatter,
+                  { name: "You", text: input } as Chatter,
+                ];
+                const temp = [...clone, ...chatter];
+                setChatter(temp);
+                localStorage.setItem("chatter", JSON.stringify(temp));
+              }}
+            >
+              Send
+            </button>
+          </p>
 
-          <button onClick={() => {
-            let res = input
-            setInput("");
-            const clone = [{ name: "Eliza", text: getElizaResponseToInput(res) } as Chatter,
-                           { name: "You", text: res } as Chatter];
-            const temp = [...clone, ...chatter];
-            setChatter(temp);
-            localStorage.setItem("chatter", JSON.stringify(temp));
-          }} >Send</button>
-        </p>
-      </article>
-      <br />
-      <article >
-        <details>
-          <summary>Conversation</summary>
-          <ul id="conversation" >
-            {
-              chatter.slice(1, chatter.length).map((s, index) => <li key={index}><b>{s.name}</b> -- {s.text} </li>)
-            }
+          <br />
+          <ul id="conversation">
+            {chatter.map((s, index) => (
+              <li key={index}>
+                <b>{s.name}</b> -- {s.text}{" "}
+              </li>
+            ))}
           </ul>
-        </details>
-      </article>
-    </main>
-  </div >
+        </article>
+      </main>
+    </div>
+  );
 }
