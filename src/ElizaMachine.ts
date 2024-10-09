@@ -44,8 +44,10 @@ export function getElizaResponseToInput(userInput: string): string {
         }
 
         if (userInput.length < 15) {
-            return "Tell me more...";
+            return `Interesting... "${userInput}". Please tell me more.`;
         }
+
+        return "Tell me more...";
     }
 
     return phrase(userInput, index);
