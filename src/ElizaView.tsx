@@ -1,10 +1,12 @@
-import { getElizaResponseToInput } from "./ElizaMachine.ts";
+import Eliza1972 from "./Eliza1972.js";
 import { useState } from "react";
 import { Chatter } from "./Definitions.ts";
 
 const initialChatter = [
   { name: "Eliza", text: "Hello how can I help you today." } as Chatter,
 ];
+
+const eliza1972 = new Eliza1972();
 
 export default function Eliza() {
   const [chatter, setChatter] = useState(initialChatter);
@@ -27,7 +29,7 @@ export default function Eliza() {
                 const clone = [
                   {
                     name: "Eliza",
-                    text: getElizaResponseToInput(input),
+                    text: eliza1972.listen(input),
                   } as Chatter,
                   { name: "You", text: input } as Chatter,
                 ];
